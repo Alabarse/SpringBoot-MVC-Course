@@ -3,17 +3,31 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
     <head>
         <title>Eventos APP</title>
+
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
         <h1>Cadastro de Eventos</h1>
         <form method="post">
-            Nome: <input type="text" value="Digite seu nome" name="name"/>
-            Local: <input type="text" value="Escolha o local" name="local"/>
+            Nome: <input type="text" value="" name="name"/>
+            Local: <input type="text" value="" name="local"/>
             Data: <input type="date" value="" name="data"/>
             Horario: <input type="time" value="" name="horario"/>
-            <button type="submit">Salvar</button>
+            <button class="btn waves-effect waves-light" type="submit" name="action">Salvar
+                <i class="material-icons right">send</i>
+            </button>
         </form>
     </body>
 </html>
