@@ -5,10 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import lombok.Data;
 
 @Data
 @Entity
+@Table(name = "evento")
 public class Evento implements Serializable{
     
     private static final long SERIALVERSIONUID = 1L;
@@ -20,4 +22,7 @@ public class Evento implements Serializable{
     private String local;
     private String data;
     private String horario;
+    
+    //@OneToMany
+    //private List<Convidados> convidado;
 }
