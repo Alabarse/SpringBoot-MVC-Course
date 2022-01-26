@@ -34,4 +34,8 @@ public class EventoController {
         modelAndView.addObject("eventos", eventos);
         return modelAndView;
     }
+    
+    public String eventoDetails() {
+        
+    }
 }
