@@ -14,16 +14,39 @@
 
     </head>
     <body>
-        <h1>Lista de Evento</h1>
-        <h3><a href="/eventos" class="waves-effect waves-light btn">Lista de Evento</a></h3>
         <div th:each="evento : ${detalhesEvento}"> 
             <div class="row">
                 <div class="container">
+                    <h1>Lista de Evento</h1>
+                    <h3><a href="/eventos" class="waves-effect waves-light btn">Lista de Evento</a></h3>
                     <p>Código: <span th:text="${evento.codigo}"></span></p>
                     <p>Nome: <span th:text="${evento.name}"></span></p>
                     <p>Local: <span th:text="${evento.local}"></span></p>
                     <p>Data: <span th:text="${evento.data}"></span></p>
                     <p>Horario: <span th:text="${evento.horario}"></span></p>
+                </div>
+
+                <div class ="container">
+                    <form method="post">
+                        Nome: <input type="text" value="" name="name"/>
+                        RG: <input type="text" value="" name="rg"/>
+                        <button class="btn waves-effect waves-light" type="submit" name="action">Adicionar
+                            <i class="material-icons right">add</i>
+                    </form>
+                </div>
+                <div class="container">
+                    <table>
+                        <thead>
+                        <th>Nome</th>
+                        <th>RG</th>
+                        </thead>
+                        <tbody th:each="convidados : ${listaConvidados}">
+                            <tr>
+                                <td><p>Nome: <span th:text="${convidados.name}"></span></p></td>
+                                <td><p>RG: <span th:text="${convidados.rg}"></span></p></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
