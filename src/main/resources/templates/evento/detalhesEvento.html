@@ -28,8 +28,8 @@
 
                 <div class ="container">
                     <form method="post">
-                        Nome: <input type="text" value="" name="name"/>
-                        RG: <input type="text" value="" name="rg"/>
+                        Nome: <input type="text" value="Nome completo" name="name"/>
+                        RG: <input type="text" value="11.111.111-1" name="rg"/>
                         <button class="btn waves-effect waves-light" type="submit" name="action">Adicionar
                             <i class="material-icons right">add</i>
                     </form>
@@ -42,8 +42,8 @@
                         </thead>
                         <tbody th:each="convidados : ${listaConvidados}">
                             <tr>
-                                <td><p>Nome: <span th:text="${convidados.name}"></span></p></td>
-                                <td><p>RG: <span th:text="${convidados.rg}"></span></p></td>
+                                <td><p><span th:text="${convidados.name}"></span></p></td>
+                                <td><p><span th:text="${convidados.rg}"></span></p></td>
                             </tr>
                         </tbody>
                     </table>

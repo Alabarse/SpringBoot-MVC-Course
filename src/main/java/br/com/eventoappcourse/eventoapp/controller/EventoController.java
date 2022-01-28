@@ -4,8 +4,10 @@ import br.com.eventoappcourse.eventoapp.models.Convidados;
 import br.com.eventoappcourse.eventoapp.repository.EventoRepository;
 import br.com.eventoappcourse.eventoapp.models.Evento;
 import br.com.eventoappcourse.eventoapp.repository.ConvidadosRepository;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -54,7 +56,7 @@ public class EventoController {
     }
     
     @PostMapping("/{codigo}")
-    public String addGuest(@PathVariable Long codigo, Convidados convidado) {
+    public String addGuest(@PathVariable Long codigo, @Valid Convidados convidado, BindingResult bindingResult) {
         Evento evento = eventoRepository.findByCodigo(codigo);
         convidado.setEvento(evento);
         convidadoRepository.save(convidado);
