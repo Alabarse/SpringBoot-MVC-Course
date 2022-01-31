@@ -11,30 +11,30 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class EventoController {
-    
+
     @Autowired
     private EventoRepository eventoRepository;
-    
+
     @Autowired
     private ConvidadosRepository convidadoRepository;
-    
+
     @GetMapping("/cadastrarEvento")
     public String form() {
         return "evento/formEvento";
     }
-    
+
     @PostMapping("/cadastrarEvento")
     public String saveForm(Evento evento) {
-        
+
         eventoRepository.save(evento);
         return "redirect:/cadastrarEvento";
     }
-    
+
     @GetMapping("/eventos")
     public ModelAndView listAll() {
         ModelAndView modelAndView = new ModelAndView("listaEventos");
@@ -42,24 +42,29 @@ public class EventoController {
         modelAndView.addObject("eventos", eventos);
         return modelAndView;
     }
-    
+
     @GetMapping("/{codigo}")
     public ModelAndView eventoDetails(@PathVariable Long codigo) {
         Evento evento = eventoRepository.findByCodigo(codigo);
         ModelAndView modelAndView = new ModelAndView("evento/detalhesEvento");
         modelAndView.addObject("detalhesEvento", evento);
-        
+
         Iterable<Convidados> convidados = convidadoRepository.findByEvento(evento);
         modelAndView.addObject("listaConvidados", convidados);
-        
+
         return modelAndView;
     }
-    
+
     @PostMapping("/{codigo}")
-    public String addGuest(@PathVariable Long codigo, @Valid Convidados convidado, BindingResult bindingResult) {
+    public String addGuest(@PathVariable Long codigo, @Valid Convidados convidado, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("mensagem", "verifique os campos");
+            return "redirect:/{codigo}";
+        }
         Evento evento = eventoRepository.findByCodigo(codigo);
         convidado.setEvento(evento);
         convidadoRepository.save(convidado);
+        redirectAttributes.addFlashAttribute("mensagem","Cadastrado com sucesso");
         return "redirect:/{codigo}";
     }
 }

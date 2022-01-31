@@ -3,7 +3,7 @@
     <head>
         <title>Eventos</title>
         <!--Import Google Icon Font-->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/> 
         <!-- Compiled and minified CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
@@ -24,12 +24,17 @@
                     <p>Local: <span th:text="${evento.local}"></span></p>
                     <p>Data: <span th:text="${evento.data}"></span></p>
                     <p>Horario: <span th:text="${evento.horario}"></span></p>
+                    <br/>
+                    <th:block th:include="mensagemValidacao"></th:block>
+                    <br/>
                 </div>
+
+
 
                 <div class ="container">
                     <form method="post">
-                        Nome: <input type="text" value="Nome completo" name="name"/>
-                        RG: <input type="text" value="11.111.111-1" name="rg"/>
+                        Nome: <input type="text" value="" name="name" placeholder="Nome completo"/>
+                        RG: <input type="text" value="" name="rg" placeholder="11.111.111-1"/>
                         <button class="btn waves-effect waves-light" type="submit" name="action">Adicionar
                             <i class="material-icons right">add</i>
                     </form>

@@ -8,8 +8,8 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 @EntityScan(basePackages = {"br.com.eventoappcourse.eventoapp.models"})
 public class EventoappApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(EventoappApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(EventoappApplication.class, args);
+    }
 
 }
