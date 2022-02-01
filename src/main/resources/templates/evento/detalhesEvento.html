@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
     <head>
@@ -6,6 +7,11 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/> 
         <!-- Compiled and minified CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="static/materialize/css/materialize.min.css"  media="screen"/>
+
+        <link rel="stylesheet" href="../../static/style/cssStyle.css" type="text/css"/>
 
         <!-- Compiled and minified JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -16,9 +22,18 @@
     <body>
         <div th:each="evento : ${detalhesEvento}"> 
             <div class="row">
-                <div class="container">
-                    <h1>Lista de Evento</h1>
-                    <h3><a href="/eventos" class="waves-effect waves-light btn">Lista de Evento</a></h3>
+                <header>
+
+                    <nav>
+                        <div class="nav-wrapper">
+                            <a href="#" class="brand-logo">Lista de eventos</a>
+                            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                                <li><a href="/eventos"><i class="material-icons left">add</i>LISTA DE EVENTOS</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </header>
+                <div class="container detalheEvento">
                     <p>Código: <span th:text="${evento.codigo}"></span></p>
                     <p>Nome: <span th:text="${evento.name}"></span></p>
                     <p>Local: <span th:text="${evento.local}"></span></p>
