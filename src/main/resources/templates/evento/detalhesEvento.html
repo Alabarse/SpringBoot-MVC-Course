@@ -9,9 +9,11 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
         <!--Import materialize.css-->
-        <link type="text/css" rel="stylesheet" href="static/materialize/css/materialize.min.css"  media="screen"/>
+        <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css"  media="screen"/>
 
-        <link rel="stylesheet" href="../../static/style/cssStyle.css" type="text/css"/>
+        <link rel="shortcut icon" href="#">
+
+        <link rel="stylesheet" type="text/css" href="/style/cssStyle.css"/>
 
         <!-- Compiled and minified JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -23,7 +25,6 @@
         <div th:each="evento : ${detalhesEvento}"> 
             <div class="row">
                 <header>
-
                     <nav>
                         <div class="nav-wrapper">
                             <a href="#" class="brand-logo">Lista de eventos</a>
@@ -34,27 +35,26 @@
                     </nav>
                 </header>
                 <div class="container detalheEvento">
+                    <h3>Detalhes do Evento</h3>
                     <p>Código: <span th:text="${evento.codigo}"></span></p>
                     <p>Nome: <span th:text="${evento.name}"></span></p>
                     <p>Local: <span th:text="${evento.local}"></span></p>
                     <p>Data: <span th:text="${evento.data}"></span></p>
                     <p>Horario: <span th:text="${evento.horario}"></span></p>
-                    <br/>
-                    <th:block th:include="mensagemValidacao"></th:block>
-                    <br/>
                 </div>
 
+                <br/>
 
-
-                <div class ="container">
-                    <form method="post">
+                <div class ="container formConvidado" >
+                    <th:block th:include="mensagemValidacao"></th:block>
+                    <form method="post" th:object="${convidados}">
                         Nome: <input type="text" value="" name="name" placeholder="Nome completo"/>
                         RG: <input type="text" value="" name="rg" placeholder="11.111.111-1"/>
                         <button class="btn waves-effect waves-light" type="submit" name="action">Adicionar
-                            <i class="material-icons right">add</i>
+                            <i class="material-icons right">add</i></button>
                     </form>
                 </div>
-                <div class="container">
+                <div class="container tabelaConvidado">
                     <table>
                         <thead>
                         <th>Nome</th>
@@ -64,6 +64,7 @@
                             <tr>
                                 <td><p><span th:text="${convidados.name}"></span></p></td>
                                 <td><p><span th:text="${convidados.rg}"></span></p></td>
+                                <td><a th:href="${(#mvc.url('EC#deleteGuest').arg(0, convidados.rg).build())}"><i class="material-icons center">delete</i></a>></td>
                             </tr>
                         </tbody>
                     </table>

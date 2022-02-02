@@ -6,13 +6,14 @@
         <!--Import Google Icon Font-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
         <!-- Compiled and minified CSS -->
-        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
-        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+        <link rel="shortcut icon" href="#">
 
         <!--Import materialize.css-->
-        <link type="text/css" rel="stylesheet" href="../static/materialize/css/materialize.min.css"  media="screen"/>
+        <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css"  media="screen"/>
 
-        <link rel="stylesheet" href="static/style/cssStyle.css"/>
+        <link rel="stylesheet" type="text/css" href="/style/cssStyle.css"/>
 
         <!-- Compiled and minified JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -33,8 +34,6 @@
             </nav>
         </header>
 
-
-
         <table>
             <thead>
                 <tr>
@@ -52,6 +51,7 @@
                     <td><span th:text="${evento.local}"></span></td>
                     <td><span th:text="${evento.data}"></span></td>
                     <td><span th:text="${evento.horario}"></span></td>
+                    <td><a class="waves-effect waves-light btn" th:href="${(#mvc.url('EC#deleteEvent').arg(0, evento.codigo)).build()}"><i class="material-icons center">delete</i> </a></td>
                 </tr>
             </tbody>
         </table>

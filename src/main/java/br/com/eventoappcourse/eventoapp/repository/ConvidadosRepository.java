@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface ConvidadosRepository extends JpaRepository<Convidados, String> {
 
     Iterable<Convidados> findByEvento(Evento evento);
+    Convidados findByRg(String rg);
 }

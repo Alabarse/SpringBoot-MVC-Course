@@ -7,11 +7,13 @@
         <!--Import Google Icon Font-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!--Import materialize.css-->
-        <link type="text/css" rel="stylesheet" href="../../static/materialize/css/materialize.min.css"  media="screen"/>
+        <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css"  media="screen"/>
+
+        <link rel="shortcut icon" href="#">
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-        
-        <link rel="stylesheet" href="static/style/cssStyle.css"/>
+
+        <link rel="stylesheet" type="text/css" href="/style/cssStyle.css"/>
 
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,23 +34,24 @@
             </nav>
         </header>
 
-        
-        <form method="post">
-            Nome: <input type="text" value="" name="name"/>
-            <div class="row">
-                <div class="input-field col s6">
-                    Local: <input type="text" value="" name="local"/>
+        <div class="container formEvento">
+            <form method="post">
+                Nome: <input type="text" value="" name="name"/>
+                <div class="row">
+                    <div class="input-field col s6">
+                        Local: <input type="text" value="" name="local"/>
+                    </div>
+                    <div class="input-field col s3">
+                        Data: <input type="date" value="" name="data"/>
+                    </div>
+                    <div class="input-field col s3">
+                        Horario: <input type="time" value="" name="horario"/>
+                    </div>
                 </div>
-                <div class="input-field col s3">
-                    Data: <input type="date" value="" name="data"/>
-                </div>
-                <div class="input-field col s3">
-                    Horario: <input type="time" value="" name="horario"/>
-                </div>
-            </div>
-            <button class="btn waves-effect waves-light" type="submit" name="action">Salvar
-                <i class="material-icons right">send</i>
-            </button>
-        </form>
+                <button class="btn waves-effect waves-light" type="submit" name="action">Salvar
+                    <i class="material-icons right">send</i>
+                </button>
+            </form>
+        </div>
     </body>
 </html>

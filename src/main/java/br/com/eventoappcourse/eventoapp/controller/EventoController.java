@@ -4,18 +4,21 @@ import br.com.eventoappcourse.eventoapp.models.Convidados;
 import br.com.eventoappcourse.eventoapp.repository.EventoRepository;
 import br.com.eventoappcourse.eventoapp.models.Evento;
 import br.com.eventoappcourse.eventoapp.repository.ConvidadosRepository;
+import java.util.List;
 import javax.validation.Valid;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
+@Log4j2
 public class EventoController {
 
     @Autowired
@@ -59,13 +62,34 @@ public class EventoController {
     @PostMapping("/{codigo}")
     public String addGuest(@PathVariable Long codigo, @Valid Convidados convidado, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("mensagem", "verifique os campos");
+            redirectAttributes.addFlashAttribute("mensagem", "verifique os campos".toUpperCase());
             return "redirect:/{codigo}";
         }
         Evento evento = eventoRepository.findByCodigo(codigo);
         convidado.setEvento(evento);
         convidadoRepository.save(convidado);
-        redirectAttributes.addFlashAttribute("mensagem","Cadastrado com sucesso");
+        redirectAttributes.addFlashAttribute("mensagem", "Cadastrado com sucesso".toUpperCase());
         return "redirect:/{codigo}";
+    }
+
+    @RequestMapping("/deletarEvento")
+    public String deleteEvent(long codigo, RedirectAttributes redirectAttributes) {
+        Evento evento = eventoRepository.findByCodigo(codigo);
+        List<Convidados> listaConvidados = (List<Convidados>) convidadoRepository.findByEvento(evento);
+        if (!(listaConvidados.isEmpty())) {
+            convidadoRepository.findByEvento(evento);
+            convidadoRepository.deleteAll();
+        } else {
+            eventoRepository.delete(evento);
+        }
+        return "redirect:/eventos";
+    }
+    
+    @RequestMapping("/deletarConvidado")
+    public String deleteGuest(String rg) {
+        Convidados convidado = convidadoRepository.findByRg(rg);
+        Long codigo = convidado.getEvento().getCodigo();
+        convidadoRepository.delete(convidado);
+        return "redirect:/" + codigo.toString();
     }
 }
