@@ -59,6 +59,7 @@ public class EventoController {
         return modelAndView;
     }
 
+    //put the codigo
     @PostMapping("/{codigo}")
     public String addGuest(@PathVariable Long codigo, @Valid Convidados convidado, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
